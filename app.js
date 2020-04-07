@@ -7,6 +7,7 @@ var seattleStore = {
   maxCust : 65, 
   avgCookieSale : 6.3,
   cookiesPurchasedPerHour : [],
+
 }
 
 // 2. Uses a method of that object to generate a random number of customers per hour. Objects/Math/random
@@ -32,14 +33,24 @@ return Math.floor(Math.random() * (max - min )) + min ;
 
 // NEW METHOD
 seattleStore.totalCookieSales = function() {
-  //assign var to output of old function
-  var customersPerHour = this.randomNumOfCust();
-  //In order to get cookies for one hour --- customers * avgCookies
-  var cookiesPerHour = 
+  for(var i = 0; i < storeHoursOpen.length ; i++){
+    var customersPerHour = this.randomNumOfCust();
+    var cookiesPerHour = this.avgCookieSale * customersPerHour;
+    this.cookiesPurchasedPerHour.push(Math.floor(cookiesPerHour));
+    //for each hour output a num of cookies
+  }
+
+  // //assign var to output of old function
+  // //In order to get cookies for one hour --- customers * avgCookies
+ 
 }
 
 
 var storeHoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm','6pm', '7pm']
+
+
+//=========================
+//Render
 
 
 
