@@ -78,7 +78,7 @@ console.log(unorderedListEl);
 // the content for an ordered listis a list item
 //document.createElement is a method that makes a dom element
 var newListItemEl = document.createElement('li');
-newListItemEl.textContent = '9';
+// newListItemEl.textContent = '9';
 unorderedListEl.appendChild(newListItemEl)
 
 //3. add content to target
@@ -86,17 +86,17 @@ unorderedListEl.appendChild(newListItemEl)
 
 seattle.renderToPage = function(){
   //1. find target
-  var targetUlEl = document.createElementById(cookiePH);
+  var targetUlEl = document.getElementById(cookiePH);
   //2. create content
   //  a. li
   var newLiEl = document.createElement('li');
   //  b. cookiePH
-  var seattleText = 'Seattle : ' + this.cookiesPerHour + ' store hours' + this.storeHoursOpen;
-  liText.textContent = seattleText
-  console.log(seattle.renderToPage);
+  var seattleText = 'Seattle : ' + this.cookiesPerHour + ' ' + storeHoursOpen;
+  newLiEl.textContent = seattleText
+  console.log(newLiEl);
   //3. append to target
 }
-
+seattle.renderToPage();
 
 
 
