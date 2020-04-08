@@ -3,6 +3,11 @@
 
 "use strict";
 
+/**
+ * //What do we need to be doing?
+ */
+
+
 //1 .
 var seattle = {
   name: 'seattle',
