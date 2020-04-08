@@ -34,7 +34,7 @@ seattle.totalSales = function () {
     //for each hour output a num of cookies
   }
   //totalSalesPerDay represents the bucket of cookies
-  for (i = 0; i < this.cookiePerHour.length; i++){
+  for (i = 0; i < this.cookiesPerHour.length; i++){
     this.totalSalesPerDay = this.totalSalesPerDay + this.cookiesPerHour[i];
   }
 };
@@ -53,6 +53,12 @@ seattle.renderToPage = function(){
     //3. append to target
     targetUlEl.appendChild(newLiEl)
   }
+  //used attribute total sales tally from the old function and created a newLiEl, reassigned its text content, and then  rendered to the dom 
+  newLiEl = document.createElement('li');
+  renderedItems ='Total: ' + this.totalSalesPerDay + ' cookies';// recreating and reassigning var render
+  newLiEl.textContent = renderedItems;// we are assigning the text content of our newLiEl to be the string renderedItems 
+  //3. append to target
+  targetUlEl.appendChild(newLiEl)
 }
 seattle.totalSales();
 seattle.renderToPage();
