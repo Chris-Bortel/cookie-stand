@@ -14,6 +14,7 @@ var seattle = {
   randCustomers: [],
   cookiesPerHour: [], //creating an empty array. called an array literal
   //picture: put in a picture. assign a striing url
+  storeHoursOpen: [ '6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',],
 };
 //=========================================================
 // 2. this is a method of seattle so 'this' refers to seattle
@@ -30,7 +31,7 @@ seattle.randCustomers = function () {
 //TODO: I want to run through the array of hours and return number of cookies
 
 seattle.totalSales = function () {
-  for (var i = 0; i < storeHoursOpen.length; i++) {
+  for (var i = 0; i < this.storeHoursOpen.length; i++) {
     var customersPerHour = this.randCustomers();
     var cookiesPerHour = this.avgCookieSale * customersPerHour;
     this.cookiesPerHour.push(Math.floor(cookiesPerHour));
@@ -41,29 +42,14 @@ seattle.totalSales = function () {
 
 // //assign var to output of old function
 // //In order to get cookies for one hour --- customers * avgCookies
-var storeHoursOpen = [ //TODO: change array into the for loop
-  "6am",
-  "7am",
-  "8am",
-  "9am",
-  "10am",
-  "11am",
-  "12pm",
-  "1pm",
-  "2pm",
-  "3pm",
-  "4pm",
-  "5pm",
-  "6pm",
-  "7pm",
-];
+
 
 //=========================================================
 //Method to Render
-var ulTarget = document.getElementById('list');
+// var ulTarget = document.getElementById('list');
 
-// step 2 is get content
-var newText = 'Welcome to dom manipulation';
+// // step 2 is get content
+// var newText = 'Welcome to dom manipulation';
 
 //step 3 add content to target
 // ulTarget.textContent = newText;
@@ -88,27 +74,33 @@ seattle.renderToPage = function(){
   //1. find target
   var targetUlEl = document.getElementById('cookiePH');
   //2. create content
-  //  a. li
-  for(var i=0 ; i < 10; i++){
-
- 
-  var newLiEl = document.createElement('li');
-  //  b. cookiePH
-  var seattleText = 'Seattle : ' + this.cookiesPerHour + ' ' + storeHoursOpen;
-  newLiEl.textContent = seattleText;
-  console.log(newLiEl);
-  //3. append to target
-  targetUlEl.appendChild(newLiEl)
+  for(var i=0 ; i < this.storeHoursOpen.length; i++){
+    var newLiEl = document.createElement('li');
+    var renderedItems =this.storeHoursOpen[i] + ': ' + this.cookiesPerHour[i] + ' cookies';// recreating and reassigning var render
+    newLiEl.textContent = renderedItems;// we are assigning the text content of our newLiEl to be the string renderedItems 
+    console.log(newLiEl);
+    //3. append to target
+    targetUlEl.appendChild(newLiEl)
   }
 }
 seattle.totalSales();
 seattle.renderToPage();
 
+/*
+//for(var i= 0; storeHoursOpen.length; i++){
+  this.storHoursOpen + cookiesPerHour
+}
+
+*/
 
 
+//figure out where i < 10 should actually go to 
 
-
-
-
-//figure out where i < 10 
 //figure out seattleText 6am : cookies
+// in order to put the time of day with the number of cookies sold, I need to put them into a row of some sort. 
+// In the icecream exmple, they are rendering the entire object to the dom. How the hell do I get them to render next to eachother----------------GOING TO WANT A FOR LOOP
+//------The forloop will take and hour and concatinate it together with the cookies sold
+// I want to create a list element for each of the pairs
+
+//each time we loop through the seattle.renderToPage method, we are grabbing the hour and the total cookies for that hour, concatinating them and the creating a list item. 
+
