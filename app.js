@@ -11,6 +11,7 @@ var seattle = {
   minCust: 23,
   maxCust: 65, //could say that we are assigning key value pair
   avgCookieSale: 6.3,
+  randCustomers: [],
   cookiesPerHour: [], //creating an empty array. called an array literal
   //picture: put in a picture. assign a striing url
 };
@@ -59,11 +60,55 @@ var storeHoursOpen = [ //TODO: change array into the for loop
 
 //=========================================================
 //Method to Render
+var ulTarget = document.getElementById('list');
 
-//her line 50
+// step 2 is get content
+var newText = 'Welcome to dom manipulation';
+
+//step 3 add content to target
+// ulTarget.textContent = newText;
+
+
+// //1 targetable element
+// var unorderedListEl = document.getElementById('cookiePH');
+// console.log(unorderedListEl);
+
+
+// // 2. create content
+// // the content for an ordered listis a list item
+// //document.createElement is a method that makes a dom element
+// var newListItemEl = document.createElement('li');
+// // newListItemEl.textContent = '9';
+// unorderedListEl.appendChild(newListItemEl)
+
+//3. add content to target
+//append the new list item to the ordered list
+
+seattle.renderToPage = function(){
+  //1. find target
+  var targetUlEl = document.getElementById('cookiePH');
+  //2. create content
+  //  a. li
+  for(var i=0 ; i < 10; i++){
+
+ 
+  var newLiEl = document.createElement('li');
+  //  b. cookiePH
+  var seattleText = 'Seattle : ' + this.cookiesPerHour + ' ' + storeHoursOpen;
+  newLiEl.textContent = seattleText;
+  console.log(newLiEl);
+  //3. append to target
+  targetUlEl.appendChild(newLiEl)
+  }
+}
+seattle.totalSales();
+seattle.renderToPage();
 
 
 
 
 
 
+
+//figure out where i < 10 
+//figure out seattleText 6am : cookies
