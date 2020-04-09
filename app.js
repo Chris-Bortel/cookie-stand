@@ -63,7 +63,7 @@ Store.prototype.renderToPage = function(){
   renderedItems ='Total: ' + this.totalSalesPerDay + ' cookies';// recreating and reassigning var render
   newLiEl.textContent = renderedItems;// we are assigning the text content of our newLiEl to be the string renderedItems 
   //3. append to target
-  targetUlEl.appendChild(newLiEl)
+  targetUlEl.appendChild(newLiEl);
 };
 
 
