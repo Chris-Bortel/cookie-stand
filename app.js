@@ -6,17 +6,17 @@
 /**
  * //What do we need to be doing?
  * //I want to build a constructor function that will build my store objects
- * //data needed for fucntion Store(minCust, maxCust, storestorename, avgCookieSale, cookieSalesPerHour, totalSales)
+ * //data needed for fucntion Store(minCust, maxCust, storecity, avgCookieSale, cookieSalesPerHour, totalSales)
  */
 
 //constructor function--- Pulling the properties into the object to be rendered... It is making the object
-function Store(storeName, minCust, maxCust, avgCookieSale, ulTargetId) {
+function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   //stuff being constructed from the store data
-  this.storeName = storeName;
+  this.city = city;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookieSale = avgCookieSale;
-  this.ulTargetId = ulTargetId
+  this.ulTargetId = ulTargetId;
   // this.randCustomersArray = [];// Do I need this anymore?---- It was the product on the rand customer function, and we are going to put min and maxCust directly into the randCustomers function. 
   
   this.storeHoursOpen = [ '6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',];
@@ -56,7 +56,7 @@ Store.prototype.renderToPage = function(){
     var renderedItems =this.storeHoursOpen[i] + ': ' + this.cookieSalesPerHour[i] + ' cookies';// recreating and reassigning var render
     newLiEl.textContent = renderedItems;// we are assigning the text content of our newLiEl to be the string renderedItems 
     //3. append to target
-    targetUlEl.appendChild(newLiEl)
+    targetUlEl.appendChild(newLiEl);
   }
   //used attribute total sales tally from the old function and created a newLiEl, reassigned its text content, and then  rendered to the dom 
   newLiEl = document.createElement('li');
@@ -67,26 +67,38 @@ Store.prototype.renderToPage = function(){
 };
 
 
+/*==Making my form work== */
+// 1. find target
+var cookieStoreForm = document.getElementById('cookieStoreForm');
+
+function captureCookieInfo(cookieStoreForm){
+console.log('hello');
+}
+
+// 2. make function useful... need to make a new object(store)
+
+// 3. render my new store to the page. 
+
 // console.log(Store);
 var seattleStore = new Store('seattle', 23, 65, 6.3, 'seattlePH');
-var tokyoStore = new Store('tokyo', 3, 24, 1.2, 'tokyoPH')
-var dubaiStore = new Store('dubai', 11, 38, 3.7, 'dubaiPH')
-var parisStore = new Store('paris', 3, 24, 1.2, 'parisPH')
-var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH')
+var tokyoStore = new Store('tokyo', 3, 24, 1.2, 'tokyoPH');
+var dubaiStore = new Store('dubai', 11, 38, 3.7, 'dubaiPH');
+var parisStore = new Store('paris', 3, 24, 1.2, 'parisPH');
+var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH');
 
-seattleStore.totalSales();
-seattleStore.renderToPage();
+// seattleStore.totalSales();
+// seattleStore.renderToPage();
 
-tokyoStore.totalSales();
-tokyoStore.renderToPage();
+// tokyoStore.totalSales();
+// tokyoStore.renderToPage();
 
-dubaiStore.totalSales();
-dubaiStore.renderToPage();
+// dubaiStore.totalSales();
+// dubaiStore.renderToPage();
 
-parisStore.totalSales();
-parisStore.renderToPage();
+// parisStore.totalSales();
+// parisStore.renderToPage();
 
-limaStore.totalSales();
-limaStore.renderToPage();
+// limaStore.totalSales();
+// limaStore.renderToPage();
 
 
