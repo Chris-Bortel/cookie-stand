@@ -101,4 +101,4 @@ var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH');
 // limaStore.totalSales();
 // limaStore.renderToPage();
 
-
+console.log('sorry, no meowing');
