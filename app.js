@@ -5,6 +5,7 @@
 var tableEltoTarget = document.getElementById('storeTable');
 var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
+var locationList = [];
 //constructor function--
 function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   //stuff being constructed from the store data
@@ -75,9 +76,25 @@ function renderTableHeader(){
   tableEltoTarget.appendChild(newTrEl);
 }
 
+locationList.push(new Store('seattle', 23, 65, 6.3, 'seattlePH'));
+locationList.push(new Store('tokyo', 3, 24, 1.2, 'tokyoPH'));
+locationList.push(new Store('dubai', 11, 38, 3.7, 'dubaiPH'));
+locationList.push(new Store('paris', 3, 24, 1.2, 'parisPH'));
+locationList.push(new Store('lima', 3, 24, 1.2, 'limaPH'));
+
+//can I make a function that renders all of this with one call?
+function renderAll(){
+  renderTableHeader();
+  for(var i in locationList){
+    locationList[i].totalSales();
+    locationList[i].renderTableRow();
+  }
+}
+
+renderAll();
+
 /*==Making my form work== */
 // 1. find target
-var storeForm = document.getElementById('cookieStoreForm');
 
 // function captureCookieInfo(cookieStoreForm){
 // console.log('hello');
@@ -89,6 +106,23 @@ var storeForm = document.getElementById('cookieStoreForm');
 
 //anytime that we use js to capture submit event from a form, we need to use Event.prototype.preventDefault
 //finds revent info
+
+
+
+// function ToPage (newStore, minimumCustomerPH) {
+//   this.newStore = newStore;
+//   this.minimumCustomerPH = minimumCustomerPH; 
+//   //TODO: Do I need to make multiple objects
+// }
+
+// TODO: Render it! Why will it not render?
+// ToPage.prototype.render = function render() {
+//   var target = document.getElementById('newStore');
+//   var newTdEl = document.createElement('td');
+//   newTdEl.textContent = '';
+//   target.appendChild(newTdEl);
+// };
+var storeForm = document.getElementById('cookieStoreForm');
 
 function handleStoreForm (eventStoreForm){
 
@@ -105,41 +139,23 @@ function handleStoreForm (eventStoreForm){
   // //grab its value. we look at the event's target input's varlue
   // //object property nested three dots down.
   // console.log('value : ' , eventStoreForm.target.city.value);
-
+  var formTarget = eventStoreForm.target;
   var newStore = eventStoreForm.target.city.value;
-  var minimumCustomerPH = eventStoreForm.targetminCust.value;
-  console.log(minimumCustomerPH);
+  var city = formTarget.city.value;
+  var minCust = formTarget.minCust.value;
+  var maxCust = formTarget.maxCust.value;
+  var storeHoursOpen = formTarget.storeHoursOpen.value;
+  // var minimumCustomerPH = handleStoreForm.targetminCust.value;
+  // console.log(minimumCustomerPH);
   alert('your new store is ' + newStore);
+  // newStore.render();
 
+  // minimumCustomerPH.render();
 }
+
 //want to present user with the info
 //2. add an event listener
-storeForm.addEventListener('submit', handleStoreForm);
-
-
-var seattleStore = new Store('seattle', 23, 65, 6.3, 'seattlePH');
-var tokyoStore = new Store('tokyo', 3, 24, 1.2, 'tokyoPH');
-var dubaiStore = new Store('dubai', 11, 38, 3.7, 'dubaiPH');
-var parisStore = new Store('paris', 3, 24, 1.2, 'parisPH');
-var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH');
-
-//can I make a function that renders all of this with one call?
-renderTableHeader();
-
-seattleStore.totalSales();
-seattleStore.renderTableRow();
-
-tokyoStore.totalSales();
-tokyoStore.renderTableRow();
-
-dubaiStore.totalSales();
-dubaiStore.renderTableRow();
-
-parisStore.totalSales();
-parisStore.renderTableRow();
-
-limaStore.totalSales();
-limaStore.renderTableRow();
+// storeForm.addEventListener('submit', handleStoreForm);
 
 
 
