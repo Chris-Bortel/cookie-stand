@@ -18,7 +18,7 @@ function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   this.maxCust = maxCust;
   this.avgCookieSale = avgCookieSale;
   this.ulTargetId = ulTargetId;
- 
+  this.storeHoursOpen = [ '6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',];
   this.cookieSalesPerHour = []; //this is because this empty array is waiting for sales to be pushed into it
   this.totalSalesPerDay = 0; //this is the value that totalSalesPerDay will be each day
 }
@@ -46,6 +46,7 @@ Store.prototype.totalSales = function () {
 
 //=========================================================
 //Method to Render
+
 
 
 
@@ -83,6 +84,18 @@ function renderTableHeader(){
   tableEltoTarget.appendChild(newTrEl);
 };
 
+/*==Making my form work== */
+// 1. find target
+var cookieStoreForm = document.getElementById('cookieStoreForm');
+
+function captureCookieInfo(cookieStoreForm){
+console.log('hello');
+}
+
+// 2. make function useful... need to make a new object(store)
+
+// 3. render my new store to the page. 
+
 // console.log(Store);
 var seattleStore = new Store('seattle', 23, 65, 6.3, 'seattlePH');
 var tokyoStore = new Store('tokyo', 3, 24, 1.2, 'tokyoPH');
@@ -108,15 +121,4 @@ limaStore.totalSales();
 limaStore.renderTableRow();
 
 
-/*==Making my form work== */
-// 1. find target
-// var cookieStoreForm = document.getElementById('cookieStoreForm');
-
-// function captureCookieInfo(cookieStoreForm){
-// console.log('hello');
-// }
-
-// 2. make function useful... need to make a new object(store)
-
-// 3. render my new store to the page.
 
