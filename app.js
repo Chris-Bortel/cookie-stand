@@ -1,14 +1,15 @@
 //TODO: do 3 literals instead of 5
 
-
-"use strict";
+'use strict';
 
 /**
  * //What do we need to be doing?
  * //I want to build a constructor function that will build my store objects
  * //data needed for fucntion Store(minCust, maxCust, storecity, avgCookieSale, cookieSalesPerHour, totalSales)
  */
-
+var tableEltoTarget = document.getElementById('storeTable');
+var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
+];
 //constructor function--- Pulling the properties into the object to be rendered... It is making the object
 function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   //stuff being constructed from the store data
@@ -17,8 +18,6 @@ function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   this.maxCust = maxCust;
   this.avgCookieSale = avgCookieSale;
   this.ulTargetId = ulTargetId;
-  // this.randCustomersArray = [];// Do I need this anymore?---- It was the product on the rand customer function, and we are going to put min and maxCust directly into the randCustomers function. 
-  
   this.storeHoursOpen = [ '6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',];
   this.cookieSalesPerHour = []; //this is because this empty array is waiting for sales to be pushed into it
   this.totalSalesPerDay = 0; //this is the value that totalSalesPerDay will be each day
@@ -26,19 +25,21 @@ function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
 
 //Randomizer====================
 Store.prototype.randCustomers = function () {
-  return Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+  return Math.floor(
+    Math.random() * (this.maxCust - this.minCust) + this.minCust
+  );
 };
 
 // totalSales function+==================
 Store.prototype.totalSales = function () {
-  for (var i = 0; i < this.storeHoursOpen.length; i++) {
+  for (var i = 0; i < storeHoursOpen.length; i++) {
     var customersPerHour = this.randCustomers();
     var currentcookieSalesPerHour = this.avgCookieSale * customersPerHour;
     this.cookieSalesPerHour.push(Math.floor(currentcookieSalesPerHour));
     //for each hour output a num of cookies
   }
   //totalSalesPerDay represents the bucket of cookies
-  for (i = 0; i < this.cookieSalesPerHour.length; i++){
+  for (i = 0; i < this.cookieSalesPerHour.length; i++) {
     this.totalSalesPerDay = this.totalSalesPerDay + this.cookieSalesPerHour[i];
   }
 };
@@ -46,26 +47,42 @@ Store.prototype.totalSales = function () {
 //=========================================================
 //Method to Render
 
-Store.prototype.renderToPage = function(){
-  //1. find target
-  console.log(this);
-  var targetUlEl = document.getElementById(this.ulTargetId);// objects propertyULId
-  //2. create content
-  for(var i=0 ; i < this.storeHoursOpen.length; i++){
-    var newLiEl = document.createElement('li');
-    var renderedItems =this.storeHoursOpen[i] + ': ' + this.cookieSalesPerHour[i] + ' cookies';// recreating and reassigning var render
-    newLiEl.textContent = renderedItems;// we are assigning the text content of our newLiEl to be the string renderedItems 
-    //3. append to target
-    targetUlEl.appendChild(newLiEl);
+
+
+
+Store.prototype.renderTableRow = function () {
+
+  var newTrEl = document.createElement('tr');
+
+  var newThEl = document.createElement('th');
+  newThEl.textContent = this.city;
+  newTrEl.appendChild(newThEl);
+  //TODO: add cookie sales
+  for(var i = 0; i < storeHoursOpen.length ; i++) {
+    var newTdEl = document.createElement('td');
+    newTdEl.textContent = this.cookieSalesPerHour[i];
+    newTrEl.appendChild(newTdEl);
   }
-  //used attribute total sales tally from the old function and created a newLiEl, reassigned its text content, and then  rendered to the dom 
-  newLiEl = document.createElement('li');
-  renderedItems ='Total: ' + this.totalSalesPerDay + ' cookies';// recreating and reassigning var render
-  newLiEl.textContent = renderedItems;// we are assigning the text content of our newLiEl to be the string renderedItems 
-  //3. append to target
-  targetUlEl.appendChild(newLiEl);
+
+  //3. add the content to the target
+  //appendChild to the tableEl , attach the tr
+  tableEltoTarget.appendChild(newTrEl);
 };
 
+function renderTableHeader(){
+  var newTrEl = document.createElement('tr');
+  var newThEl = document.createElement('th');
+  newThEl.textContent = '';
+  newTrEl.appendChild(newThEl);
+
+  for(var i = 0; i < storeHoursOpen.length ; i++) {
+    var newTdEl = document.createElement('td');
+    newTdEl.textContent = storeHoursOpen[i];
+    newTrEl.appendChild(newTdEl);
+  }
+
+  tableEltoTarget.appendChild(newTrEl);
+};
 
 /*==Making my form work== */
 // 1. find target
@@ -86,19 +103,22 @@ var dubaiStore = new Store('dubai', 11, 38, 3.7, 'dubaiPH');
 var parisStore = new Store('paris', 3, 24, 1.2, 'parisPH');
 var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH');
 
-// seattleStore.totalSales();
-// seattleStore.renderToPage();
+renderTableHeader();
 
-// tokyoStore.totalSales();
-// tokyoStore.renderToPage();
+seattleStore.totalSales();
+seattleStore.renderTableRow();
 
-// dubaiStore.totalSales();
-// dubaiStore.renderToPage();
+tokyoStore.totalSales();
+tokyoStore.renderTableRow();
 
-// parisStore.totalSales();
-// parisStore.renderToPage();
+dubaiStore.totalSales();
+dubaiStore.renderTableRow();
 
-// limaStore.totalSales();
-// limaStore.renderToPage();
+parisStore.totalSales();
+parisStore.renderTableRow();
 
-console.log('sorry, no meowing');
+limaStore.totalSales();
+limaStore.renderTableRow();
+
+
+
