@@ -2,15 +2,10 @@
 
 'use strict';
 
-/**
- * //What do we need to be doing?
- * //I want to build a constructor function that will build my store objects
- * //data needed for fucntion Store(minCust, maxCust, storecity, avgCookieSale, cookieSalesPerHour, totalSales)
- */
 var tableEltoTarget = document.getElementById('storeTable');
 var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
-//constructor function--- Pulling the properties into the object to be rendered... It is making the object
+//constructor function--
 function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   //stuff being constructed from the store data
   this.city = city;
@@ -19,8 +14,8 @@ function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   this.avgCookieSale = avgCookieSale;
   this.ulTargetId = ulTargetId;
   this.storeHoursOpen = [ '6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',];
-  this.cookieSalesPerHour = []; //this is because this empty array is waiting for sales to be pushed into it
-  this.totalSalesPerDay = 0; //this is the value that totalSalesPerDay will be each day
+  this.cookieSalesPerHour = [];
+  this.totalSalesPerDay = 0;
 }
 
 //Randomizer====================
@@ -44,11 +39,8 @@ Store.prototype.totalSales = function () {
   }
 };
 
-//=========================================================
+//=======================================================
 //Method to Render
-
-
-
 
 Store.prototype.renderTableRow = function () {
 
@@ -57,13 +49,12 @@ Store.prototype.renderTableRow = function () {
   var newThEl = document.createElement('th');
   newThEl.textContent = this.city;
   newTrEl.appendChild(newThEl);
-  //TODO: add cookie sales
+  //add cookie sales
   for(var i = 0; i < storeHoursOpen.length ; i++) {
     var newTdEl = document.createElement('td');
     newTdEl.textContent = this.cookieSalesPerHour[i];
     newTrEl.appendChild(newTdEl);
   }
-
   //3. add the content to the target
   //appendChild to the tableEl , attach the tr
   tableEltoTarget.appendChild(newTrEl);
@@ -82,27 +73,57 @@ function renderTableHeader(){
   }
 
   tableEltoTarget.appendChild(newTrEl);
-};
+}
 
 /*==Making my form work== */
 // 1. find target
-var cookieStoreForm = document.getElementById('cookieStoreForm');
+var storeForm = document.getElementById('cookieStoreForm');
 
-function captureCookieInfo(cookieStoreForm){
-console.log('hello');
+// function captureCookieInfo(cookieStoreForm){
+// console.log('hello');
+// }
+
+// 3. make function useful... need to make a new object(store) attach a callback function
+
+//collect the name and input and put it in the store form
+
+//anytime that we use js to capture submit event from a form, we need to use Event.prototype.preventDefault
+//finds revent info
+
+function handleStoreForm (eventStoreForm){
+
+  eventStoreForm.preventDefault();
+
+  ////====learn how to find a value ==========
+  // //etire event
+  // console.log('event : ' , eventStoreForm);
+  // //event's target (form); the target cvapures the content
+  // console.log('target : ' , eventStoreForm.target);
+  // //we look at the property of the tarbget that is the name of the input we want
+
+  // console.log('input : ' , eventStoreForm.target.city);
+  // //grab its value. we look at the event's target input's varlue
+  // //object property nested three dots down.
+  // console.log('value : ' , eventStoreForm.target.city.value);
+
+  var newStore = eventStoreForm.target.city.value;
+  var minimumCustomerPH = eventStoreForm.targetminCust.value;
+  console.log(minimumCustomerPH);
+  alert('your new store is ' + newStore);
+
 }
+//want to present user with the info
+//2. add an event listener
+storeForm.addEventListener('submit', handleStoreForm);
 
-// 2. make function useful... need to make a new object(store)
 
-// 3. render my new store to the page. 
-
-// console.log(Store);
 var seattleStore = new Store('seattle', 23, 65, 6.3, 'seattlePH');
 var tokyoStore = new Store('tokyo', 3, 24, 1.2, 'tokyoPH');
 var dubaiStore = new Store('dubai', 11, 38, 3.7, 'dubaiPH');
 var parisStore = new Store('paris', 3, 24, 1.2, 'parisPH');
 var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH');
 
+//can I make a function that renders all of this with one call?
 renderTableHeader();
 
 seattleStore.totalSales();
