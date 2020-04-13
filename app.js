@@ -19,7 +19,6 @@ function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   this.totalSalesPerDay = 0;
 }
 
-
 //Randomizer====================
 Store.prototype.randCustomers = function () {
   return Math.floor(
@@ -29,10 +28,13 @@ Store.prototype.randCustomers = function () {
 
 // totalSales function+==================
 Store.prototype.totalSales = function () {
-  for (var i = 0; i < storeHoursOpen.length; i++) {
-    var customersPerHour = this.randCustomers();
-    var currentcookieSalesPerHour = this.avgCookieSale * customersPerHour;
-    this.cookieSalesPerHour.push(Math.floor(currentcookieSalesPerHour));
+  if (this.cookieSalesPerHour.length === 0){
+    for (var i = 0; i < storeHoursOpen.length; i++) {
+      var customersPerHour = this.randCustomers();
+      var currentcookieSalesPerHour = this.avgCookieSale * customersPerHour;
+
+      this.cookieSalesPerHour.push(Math.floor(currentcookieSalesPerHour));
+    }
     //for each hour output a num of cookies
   }
   //totalSalesPerDay represents the bucket of cookies
@@ -115,11 +117,11 @@ function renderTableFooter(){
 }
 
 
-locationList.push(new Store('seattle', 23, 65, 6.3, 'seattlePH'));
-locationList.push(new Store('tokyo', 3, 24, 1.2, 'tokyoPH'));
-locationList.push(new Store('dubai', 11, 38, 3.7, 'dubaiPH'));
-locationList.push(new Store('paris', 3, 24, 1.2, 'parisPH'));
-locationList.push(new Store('lima', 3, 24, 1.2, 'limaPH'));
+locationList.push(new Store('seattle', 23, 65, 6.3));
+locationList.push(new Store('tokyo', 3, 24, 1.2));
+locationList.push(new Store('dubai', 11, 38, 3.7));
+locationList.push(new Store('paris', 3, 24, 1.2));
+locationList.push(new Store('lima', 3, 24, 1.2));
 
 //can I make a function that renders all of this with one call?
 function renderAll(){
@@ -180,22 +182,23 @@ function handleStoreForm (eventStoreForm){
   // //object property nested three dots down.
   // console.log('value : ' , eventStoreForm.target.city.value);
   var formTarget = eventStoreForm.target;
-  var newStore = eventStoreForm.target.city.value;
   var city = formTarget.city.value;
-  var minCust = formTarget.minCust.value;
-  var maxCust = formTarget.maxCust.value;
-  var storeHoursOpen = formTarget.storeHoursOpen.value;
-  // var minimumCustomerPH = handleStoreForm.targetminCust.value;
-  // console.log(minimumCustomerPH);
-  alert('your new store is ' + newStore);
-  // newStore.render();
+  var minCust = parseInt(formTarget.minCust.value);
+  var maxCust = parseInt(formTarget.maxCust.value);
+  var avgCookieSale = parseInt(formTarget.avgCookieSale.value);
 
-  // minimumCustomerPH.render();
+  locationList.push(new Store(city, minCust, maxCust,avgCookieSale));
+ for(var i = 0; i < locationList.length; i++){
+    locationList[i].totalSalesPerDay = 0;
+ }
+  tableEltoTarget.innerHTML = '';
+  console.log(locationList);
+  renderAll();
 }
 
 //want to present user with the info
 //2. add an event listener
-// storeForm.addEventListener('submit', handleStoreForm);
+storeForm.addEventListener('submit', handleStoreForm);
 
 
 
