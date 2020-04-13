@@ -19,6 +19,7 @@ function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   this.totalSalesPerDay = 0;
 }
 
+
 //Randomizer====================
 Store.prototype.randCustomers = function () {
   return Math.floor(
@@ -48,7 +49,7 @@ Store.prototype.renderTableRow = function () {
   var newTrEl = document.createElement('tr');
 
   var newThEl = document.createElement('th');
-  newThEl.textContent = this.city;
+  newThEl.textContent = this.city.charAt(0).toUpperCase() + this.city.slice(1);
   newTrEl.appendChild(newThEl);
   //add cookie sales
   for(var i = 0; i < storeHoursOpen.length ; i++) {
@@ -56,6 +57,10 @@ Store.prototype.renderTableRow = function () {
     newTdEl.textContent = this.cookieSalesPerHour[i];
     newTrEl.appendChild(newTdEl);
   }
+
+  newTdEl = document.createElement('td');
+  newTdEl.textContent = this.totalSalesPerDay;
+  newTrEl.appendChild(newTdEl);
   //3. add the content to the target
   //appendChild to the tableEl , attach the tr
   tableEltoTarget.appendChild(newTrEl);
@@ -72,9 +77,43 @@ function renderTableHeader(){
     newTdEl.textContent = storeHoursOpen[i];
     newTrEl.appendChild(newTdEl);
   }
+  newTdEl = document.createElement('td');
+  newTdEl.textContent = 'Total';
+  newTrEl.appendChild(newTdEl);
 
   tableEltoTarget.appendChild(newTrEl);
 }
+
+function renderTableFooter(){
+  var newTrEl = document.createElement('tr');
+
+  var newThEl = document.createElement('th');
+  newThEl.textContent = 'Hourly Total';
+  newTrEl.appendChild(newThEl);
+  //add cookie sales
+  
+  for(var i = 0; i < storeHoursOpen.length ; i++) {
+    var cookieCounter = 0;
+    var newTdEl = document.createElement('td');
+    for(var j = 0; j < locationList.length; j++) {
+      cookieCounter += locationList[j].cookieSalesPerHour[i];
+    }
+    newTdEl.textContent = cookieCounter;
+    newTrEl.appendChild(newTdEl);
+  }
+
+  cookieCounter = 0;
+  newTdEl = document.createElement('td');
+  for(i = 0; i < locationList.length; i++) {
+    cookieCounter += locationList[i].totalSalesPerDay;
+  }
+  newTdEl.textContent = cookieCounter;
+  newTrEl.appendChild(newTdEl);
+  //3. add the content to the target
+  //appendChild to the tableEl , attach the tr
+  tableEltoTarget.appendChild(newTrEl);
+}
+
 
 locationList.push(new Store('seattle', 23, 65, 6.3, 'seattlePH'));
 locationList.push(new Store('tokyo', 3, 24, 1.2, 'tokyoPH'));
@@ -85,10 +124,11 @@ locationList.push(new Store('lima', 3, 24, 1.2, 'limaPH'));
 //can I make a function that renders all of this with one call?
 function renderAll(){
   renderTableHeader();
-  for(var i in locationList){
+  for(var i = 0; i < locationList.length ; i++) {
     locationList[i].totalSales();
     locationList[i].renderTableRow();
   }
+  renderTableFooter();
 }
 
 renderAll();
