@@ -80,17 +80,21 @@ function renderTableHeader(){
     newTdEl.textContent = storeHoursOpen[i];
     newTrEl.appendChild(newTdEl);
   }
+// renders total header
+  newTdEl = document.createElement('td');
+  newTdEl.textContent = 'Total';
+  newTrEl.appendChild(newTdEl);
 
   tableEltoTarget.appendChild(newTrEl);
-};
+}
 
 /*==Making my form work== */
 // 1. find target
-var cookieStoreForm = document.getElementById('cookieStoreForm');
+// var cookieStoreForm = document.getElementById('cookieStoreForm');
 
-function captureCookieInfo(cookieStoreForm){
-console.log('hello');
-}
+// function captureCookieInfo(cookieStoreForm){
+// console.log('hello');
+// }
 
 // 2. make function useful... need to make a new object(store)
 
