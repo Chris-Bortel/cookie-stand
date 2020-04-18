@@ -46,6 +46,8 @@ Store.prototype.totalSales = function () {
   }
 };
 
+
+
 //=========================================================
 //Method to Render
 
@@ -71,6 +73,7 @@ Store.prototype.renderTableRow = function () {
   tableEltoTarget.appendChild(newTrEl);
 };
 
+// renders total header
 function renderTableHeader(){
   var newTrEl = document.createElement('tr');
   var newThEl = document.createElement('th');
@@ -82,7 +85,7 @@ function renderTableHeader(){
     newTdEl.textContent = storeHoursOpen[i];
     newTrEl.appendChild(newTdEl);
   }
-// renders total header
+
   newTdEl = document.createElement('td');
   newTdEl.textContent = 'Total';
   newTrEl.appendChild(newTdEl);
@@ -96,7 +99,7 @@ function renderTableFooter(){
   newThEl.textContent = 'Hourly Total';
   newTrEl.appendChild(newThEl);
   //add cookie sales
-  
+
   for(var i = 0; i < storeHoursOpen.length ; i++) {
     var cookieCounter = 0;
     // console.log(cookieCounter);
@@ -155,26 +158,8 @@ function renderStores(){
 
 renderStores();
 
+//take sales per hour and then
 
-
-
-// renderTableHeader();
-// renderTableFooter();
-
-// seattleStore.totalSales();
-// seattleStore.renderTableRow();
-
-// tokyoStore.totalSales();
-// tokyoStore.renderTableRow();
-
-// dubaiStore.totalSales();
-// dubaiStore.renderTableRow();
-
-// parisStore.totalSales();
-// parisStore.renderTableRow();
-
-// limaStore.totalSales();
-// limaStore.renderTableRow();
 
 
 
