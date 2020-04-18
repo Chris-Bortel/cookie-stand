@@ -128,6 +128,31 @@ function renderTableFooter(){
 
 /*==Making my form work== */
 // 1. find target
+function handleSubmit(event){
+  event.preventDefault();
+  //need to target info that will be in form
+  var city = event.target.city.value; //we get the data to show to the console by using value
+  console.log(city);
+  var minCust = event.target.minCust.value;
+  console.log(minCust);
+  var maxCust = event.target.maxCust.value;
+  console.log(maxCust);
+  var storeHoursOpen = event.target.storeHoursOpen.value;
+  console.log(storeHoursOpen);
+
+  event.target.city.value = null;
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.storeHoursOpen.value = null;
+
+}
+var userForm = document.getElementById('userForm');
+userForm.addEventListener('submit', handleSubmit);
+
+
+
+
+
 // var cookieStoreForm = document.getElementById('cookieStoreForm');
 
 // function captureCookieInfo(cookieStoreForm){
