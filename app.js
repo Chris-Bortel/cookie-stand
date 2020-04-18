@@ -2,17 +2,13 @@
 
 'use strict';
 
-/**
- * //What do we need to be doing?
- * //I want to build a constructor function that will build my store objects
- * //data needed for fucntion Store(minCust, maxCust, storecity, avgCookieSale, cookieSalesPerHour, totalSales)
- */
+
 var tableEltoTarget = document.getElementById('storeTable');
 var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
 var locationList = [];
 
-//constructor function--- Pulling the properties into the object to be rendered... It is making the object
+
 function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   //stuff being constructed from the store data
   this.city = city;
@@ -46,13 +42,8 @@ Store.prototype.totalSales = function () {
   }
 };
 
-
-
 //=========================================================
 //Method to Render
-
-
-
 
 Store.prototype.renderTableRow = function () {
 
@@ -140,6 +131,8 @@ function handleSubmit(event){
   var storeHoursOpen = event.target.storeHoursOpen.value;
   console.log(storeHoursOpen);
 
+  locationList.push(new Store(city, minCust, maxCust, storeHoursOpen));
+
   event.target.city.value = null;
   event.target.minCust.value = null;
   event.target.maxCust.value = null;
@@ -149,17 +142,6 @@ function handleSubmit(event){
 var userForm = document.getElementById('userForm');
 userForm.addEventListener('submit', handleSubmit);
 
-
-
-
-
-// var cookieStoreForm = document.getElementById('cookieStoreForm');
-
-// function captureCookieInfo(cookieStoreForm){
-// console.log('hello');
-// }
-
-// 2. make function useful... need to make a new object(store)
 
 // 3. render my new store to the page. 
 
