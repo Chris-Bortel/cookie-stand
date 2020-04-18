@@ -10,6 +10,8 @@
 var tableEltoTarget = document.getElementById('storeTable');
 var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
+var locationList = [];
+
 //constructor function--- Pulling the properties into the object to be rendered... It is making the object
 function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
   //stuff being constructed from the store data
@@ -84,7 +86,40 @@ function renderTableHeader(){
   newTdEl = document.createElement('td');
   newTdEl.textContent = 'Total';
   newTrEl.appendChild(newTdEl);
+  tableEltoTarget.appendChild(newTrEl);
+}
 
+//render footer
+function renderTableFooter(){
+  var newTrEl = document.createElement('tr');
+  var newThEl = document.createElement('th');
+  newThEl.textContent = 'Hourly Total';
+  newTrEl.appendChild(newThEl);
+  //add cookie sales
+  
+  for(var i = 0; i < storeHoursOpen.length ; i++) {
+    var cookieCounter = 0;
+    // console.log(cookieCounter);
+    var newTdEl = document.createElement('td');
+    console.log(locationList.length);
+    for(var j = 0; j < locationList.length; j++) {
+      cookieCounter += locationList[j].cookieSalesPerHour[i]; //taking cookieCounter value 
+      // console.log(cookieCounter);
+    }
+
+    newTdEl.textContent = cookieCounter;
+    newTrEl.appendChild(newTdEl);
+  }
+
+  cookieCounter = 0;
+  newTdEl = document.createElement('td');
+  for(i = 0; i < locationList.length; i++) {
+    cookieCounter += locationList[i].totalSalesPerDay;
+  }
+  newTdEl.textContent = cookieCounter;
+  newTrEl.appendChild(newTdEl);
+  //3. add the content to the target
+  //appendChild to the tableEl , attach the tr
   tableEltoTarget.appendChild(newTrEl);
 }
 
@@ -101,28 +136,45 @@ function renderTableHeader(){
 // 3. render my new store to the page. 
 
 // console.log(Store);
-var seattleStore = new Store('seattle', 23, 65, 6.3, 'seattlePH');
-var tokyoStore = new Store('tokyo', 3, 24, 1.2, 'tokyoPH');
-var dubaiStore = new Store('dubai', 11, 38, 3.7, 'dubaiPH');
-var parisStore = new Store('paris', 3, 24, 1.2, 'parisPH');
-var limaStore = new Store('lima', 3, 24, 1.2, 'limaPH');
+locationList.push(new Store('seattle', 23, 65, 6.3, 'seattlePH')); //not populating because ... I am not rendering it yet.
 
-renderTableHeader();
+locationList.push(new Store('tokyo', 3, 24, 1.2, 'tokyoPH'));
+locationList.push(new Store('dubai', 11, 38, 3.7, 'dubaiPH'));
+locationList.push(new Store('paris', 3, 24, 1.2, 'parisPH'));
+locationList.push(new Store('lima', 3, 24, 1.2, 'limaPH'));
 
-seattleStore.totalSales();
-seattleStore.renderTableRow();
+//I am wanting to make a function that renders all of the stores
+function renderStores(){
+  renderTableHeader();
+  for(var i = 0; i < locationList.length; i++) {
+    locationList[i].totalSales();
+    locationList[i].renderTableRow();
+  }
+  renderTableFooter();
+}
 
-tokyoStore.totalSales();
-tokyoStore.renderTableRow();
+renderStores();
 
-dubaiStore.totalSales();
-dubaiStore.renderTableRow();
 
-parisStore.totalSales();
-parisStore.renderTableRow();
 
-limaStore.totalSales();
-limaStore.renderTableRow();
+
+// renderTableHeader();
+// renderTableFooter();
+
+// seattleStore.totalSales();
+// seattleStore.renderTableRow();
+
+// tokyoStore.totalSales();
+// tokyoStore.renderTableRow();
+
+// dubaiStore.totalSales();
+// dubaiStore.renderTableRow();
+
+// parisStore.totalSales();
+// parisStore.renderTableRow();
+
+// limaStore.totalSales();
+// limaStore.renderTableRow();
 
 
 
