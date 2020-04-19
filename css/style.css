@@ -1,10 +1,43 @@
-/* Table styling
-css-tricks cool tables */
-body {
-  background-color: salmon;
+/* index  */
+* {
+  outline: 1px dotted red;
+  box-sizing: border-box;
 }
 
-h1 {
+body {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  /* background-color: salmon; */
+}
+
+nav {
+  text-align: center;
+  width: 960px;
+  margin: 0 auto;
+}
+
+nav h1 {
+  font-size: 30px;
+}
+
+ul li {
+  display: inline-block;
+}
+
+ul p {
+  border: 3px solid #003366;
+  font-size: 18px;
+  font-family: "Anton", sans-serif;
+  text-align: center;
+  background-color: lightblue;
+  width: 500px;
+}
+
+/* Table styling
+css-tricks cool tables */
+
+/* h1 {
   font-size:50px;
   font-family: 'Pacifico', cursive;
   color: #003366;
@@ -56,12 +89,4 @@ th {
   border: 1px solid black;
 }
 
-/* Index.html */
-ul p {
-  border: 3px solid #003366;;
-  font-size: 18px;
-  font-family: 'Anton', sans-serif;
-  text-align: center;
-  background-color: lightblue;
-  width: 500px;
-}
+ */
