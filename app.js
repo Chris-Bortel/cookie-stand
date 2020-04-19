@@ -1,24 +1,18 @@
-//TODO: do 3 literals instead of 5
-
 'use strict';
 
-
 var tableEltoTarget = document.getElementById('storeTable');
-var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
-];
+var storeHoursOpen = ['6am', '7am', '8am', '9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 var locationList = [];
 
-
-function Store(city, minCust, maxCust, avgCookieSale, ulTargetId) {
+function Store(city, minCust, maxCust, avgCookieSale) { //this is a class constructor
   //stuff being constructed from the store data
   this.city = city;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookieSale = avgCookieSale;
-  this.ulTargetId = ulTargetId;
   this.storeHoursOpen = [ '6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',];
   this.cookieSalesPerHour = []; //this is because this empty array is waiting for sales to be pushed into it
-  this.totalSalesPerDay = 0; //this is the value that totalSalesPerDay will be each day
+  this.thisStoresTotalSalesPerDay = 0; //this is the value that thisStoresTotalSalesPerDay will be each day
 }
 
 //Randomizer====================
@@ -28,130 +22,111 @@ Store.prototype.randCustomers = function () {
   );
 };
 
-// totalSales function+==================
+// totalSales method to the store object ==================
 Store.prototype.totalSales = function () {
-  for (var i = 0; i < storeHoursOpen.length; i++) {
-    var customersPerHour = this.randCustomers();
-    var currentcookieSalesPerHour = this.avgCookieSale * customersPerHour;
-    this.cookieSalesPerHour.push(Math.floor(currentcookieSalesPerHour));
+  if (this.cookieSalesPerHour.length === 0) { //if array has stuff in it do not run it
+    for (var i = 0; i < storeHoursOpen.length; i++) {
+      var customersThisHour = this.randCustomers();
+      var cookieSalesThisHour = this.avgCookieSale * customersThisHour;
+      this.cookieSalesPerHour.push(Math.floor(cookieSalesThisHour));
     //for each hour output a num of cookies
+    }
+    // console.log(this.totalSales)
+    //thisStoresTotalSalesPerDay represents the bucket of cookies
+  
+    for (i = 0; i < this.cookieSalesPerHour.length; i++) {
+      this.thisStoresTotalSalesPerDay += this.cookieSalesPerHour[i];//keeps the running total --- array of total sales and the number of total sales perday
+    }
   }
-  //totalSalesPerDay represents the bucket of cookies
-  for (i = 0; i < this.cookieSalesPerHour.length; i++) {
-    this.totalSalesPerDay = this.totalSalesPerDay + this.cookieSalesPerHour[i];
-  }
+
+  console.log(this.thisStoresTotalSalesPerDay);
 };
 
 //=========================================================
 //Method to Render
 
-Store.prototype.renderTableRow = function () {
-
-  var newTrEl = document.createElement('tr');
-
-  var newThEl = document.createElement('th');
-  newThEl.textContent = this.city;
-  newTrEl.appendChild(newThEl);
+Store.prototype.renderTableRow = function () { //rendering each city and all of its numbers
+  var thisCityTrEl = document.createElement('tr');
+  var thisCityThEl = document.createElement('th');
+  thisCityThEl.textContent = this.city;
+  thisCityTrEl.appendChild(thisCityThEl);
   //TODO: add cookie sales
   for(var i = 0; i < storeHoursOpen.length ; i++) {
-    var newTdEl = document.createElement('td');
-    newTdEl.textContent = this.cookieSalesPerHour[i];
-    newTrEl.appendChild(newTdEl);
+    var thisCityTdEl = document.createElement('td');
+    thisCityTdEl.textContent = this.cookieSalesPerHour[i];
+    thisCityTrEl.appendChild(thisCityTdEl);
   }
+  //totals of the city
+  // 1. creating element
+  var thisCitiesTotalTdEl = document.createElement('td');
 
-  //3. add the content to the target
-  //appendChild to the tableEl , attach the tr
-  tableEltoTarget.appendChild(newTrEl);
+  // 2. assign text content for totals
+  thisCitiesTotalTdEl.textContent = this.thisStoresTotalSalesPerDay;
+  // 3. append the element to the tableRow
+  thisCityTrEl.appendChild(thisCitiesTotalTdEl);
+  tableEltoTarget.appendChild(thisCityTrEl);
 };
 
-// renders total header
+// renders table header reading left to right
 function renderTableHeader(){
-  var newTrEl = document.createElement('tr');
-  var newThEl = document.createElement('th');
-  newThEl.textContent = '';
-  newTrEl.appendChild(newThEl);
+  var topHeaderTrEl = document.createElement('tr');
+  var topHeaderThEl = document.createElement('th');
+  topHeaderTrEl.appendChild(topHeaderThEl); // create empty cell in top left
 
   for(var i = 0; i < storeHoursOpen.length ; i++) {
-    var newTdEl = document.createElement('td');
-    newTdEl.textContent = storeHoursOpen[i];
-    newTrEl.appendChild(newTdEl);
+    var topHeaderTdEl = document.createElement('td');
+    topHeaderTdEl.textContent = storeHoursOpen[i];
+    topHeaderTrEl.appendChild(topHeaderTdEl);
   }
-
-  newTdEl = document.createElement('td');
-  newTdEl.textContent = 'Total';
-  newTrEl.appendChild(newTdEl);
-  tableEltoTarget.appendChild(newTrEl);
+  topHeaderTdEl = document.createElement('td');
+  topHeaderTdEl.textContent = 'Total';
+  topHeaderTrEl.appendChild(topHeaderTdEl);
+  tableEltoTarget.appendChild(topHeaderTrEl);
 }
 
 //render footer
 function renderTableFooter(){
-  var newTrEl = document.createElement('tr');
-  var newThEl = document.createElement('th');
-  newThEl.textContent = 'Hourly Total';
-  newTrEl.appendChild(newThEl);
+  var hourlyTotalsTrEl = document.createElement('tr');
+  var hourlyTotalsThEl = document.createElement('th');
+  hourlyTotalsThEl.textContent = 'Hourly Total';
+  hourlyTotalsTrEl.appendChild(hourlyTotalsThEl);
   //add cookie sales
 
+  //rendering for the hour columns
   for(var i = 0; i < storeHoursOpen.length ; i++) {
     var cookieCounter = 0;
     // console.log(cookieCounter);
-    var newTdEl = document.createElement('td');
-    console.log(locationList.length);
+    var hourlyTotalsTdEl = document.createElement('td');
+    // console.log(locationList.length);
     for(var j = 0; j < locationList.length; j++) {
-      cookieCounter += locationList[j].cookieSalesPerHour[i]; //taking cookieCounter value 
+      cookieCounter += locationList[j].cookieSalesPerHour[i]; //reasigning everytime ---- for every hour at every store add cookie sales to running total
       // console.log(cookieCounter);
     }
-
-    newTdEl.textContent = cookieCounter;
-    newTrEl.appendChild(newTdEl);
+    hourlyTotalsTdEl.textContent = cookieCounter;
+    hourlyTotalsTrEl.appendChild(hourlyTotalsTdEl);
   }
 
   cookieCounter = 0;
-  newTdEl = document.createElement('td');
+  var totalsTotalsTdEl = document.createElement('td');
   for(i = 0; i < locationList.length; i++) {
-    cookieCounter += locationList[i].totalSalesPerDay;
+    cookieCounter += locationList[i].thisStoresTotalSalesPerDay; //render the sum of the total sales at all locations (bottom left cell)
   }
-  newTdEl.textContent = cookieCounter;
-  newTrEl.appendChild(newTdEl);
+  totalsTotalsTdEl = document.createElement('td');
+  totalsTotalsTdEl.textContent = cookieCounter;
+  hourlyTotalsTrEl.appendChild(totalsTotalsTdEl);
   //3. add the content to the target
   //appendChild to the tableEl , attach the tr
-  tableEltoTarget.appendChild(newTrEl);
+  tableEltoTarget.appendChild(hourlyTotalsTrEl);
 }
 
-/*==Making my form work== */
-// 1. find target
-function handleSubmit(event){
-  event.preventDefault();
-  //need to target info that will be in form
-  var city = event.target.city.value; //we get the data to show to the console by using value
-  console.log(city);
-  var minCust = event.target.minCust.value;
-  console.log(minCust);
-  var maxCust = event.target.maxCust.value;
-  console.log(maxCust);
-  var storeHoursOpen = event.target.storeHoursOpen.value;
-  console.log(storeHoursOpen);
 
-  locationList.push(new Store(city, minCust, maxCust, storeHoursOpen));
+// TODO: 3. render my new store to the page.
 
-  event.target.city.value = null;
-  event.target.minCust.value = null;
-  event.target.maxCust.value = null;
-  event.target.storeHoursOpen.value = null;
-
-}
-var userForm = document.getElementById('userForm');
-userForm.addEventListener('submit', handleSubmit);
-
-
-// 3. render my new store to the page. 
-
-// console.log(Store);
-locationList.push(new Store('seattle', 23, 65, 6.3, 'seattlePH')); //not populating because ... I am not rendering it yet.
-
-locationList.push(new Store('tokyo', 3, 24, 1.2, 'tokyoPH'));
-locationList.push(new Store('dubai', 11, 38, 3.7, 'dubaiPH'));
-locationList.push(new Store('paris', 3, 24, 1.2, 'parisPH'));
-locationList.push(new Store('lima', 3, 24, 1.2, 'limaPH'));
+locationList.push(new Store('seattle', 23, 65, 6.3));
+locationList.push(new Store('tokyo', 3, 24, 1.2));
+locationList.push(new Store('dubai', 11, 38, 3.7));
+locationList.push(new Store('paris', 3, 24, 1.2));
+locationList.push(new Store('lima', 3, 24, 1.2));
 
 //I am wanting to make a function that renders all of the stores
 function renderStores(){
@@ -163,7 +138,35 @@ function renderStores(){
   renderTableFooter();
 }
 
-renderStores();
+renderStores(); // renders the first time that the page is loaded
+
+/*==Making my form work== */
+// 1. find target
+function handleSubmit(event){
+  event.preventDefault();
+  //need to target info that will be in form
+  var city = event.target.city.value; //we get the data to show to the console by using value
+  console.log(city);
+  var minCust = parseInt(event.target.minCust.value);
+  console.log(minCust);
+  var maxCust = parseInt(event.target.maxCust.value);
+  console.log(maxCust);
+  var avgCookieSale = parseInt(event.target.avgCookieSale.value);
+  console.log(avgCookieSale);
+
+  locationList.push(new Store(city, minCust, maxCust, avgCookieSale));
+
+  event.target.city.value = null;
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.avgCookieSale.value = null;
+
+  tableEltoTarget.innerHTML = '';
+
+  renderStores(); // renders new form if they submit. 
+}
+var userForm = document.getElementById('userForm');
+userForm.addEventListener('submit', handleSubmit);
 
 //take sales per hour and then
 
