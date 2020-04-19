@@ -3,36 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Store Front</title>
   </head>
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sales.html">Sales</a></li>
+          <li><a href="store.html">Fishy Swag</a></li>
+          <li><a href="order-processing.html">Orders</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- 1. find the values in the form using event listener js -->
+    <!-- figure out hour to put data into constructor function -->
 
-<!-- 1. find the values in the form using event listener js -->
-<!-- figure out hour to put data into constructor function -->
-
-     <!-- My form! -->
-     <form id ="userForm">
+    <!-- My form! -->
+    <form id="userForm">
       <fieldset>
-        <legend>Cookie Store Creator </legend>
+        <legend>Cookie Store Creator</legend>
 
         <label for="city">City Location</label>
-        <input type="text" name="city" placeholder="ex. Yakima"> 
-        
+        <input type="text" name="city" placeholder="ex. Yakima" />
+
         <!-- <button type="submit">Submit</button> -->
-        <input type="submit">
+        <input type="submit" />
 
         <label for="minCust">Min Hourly Customers</label>
-        <input type="text" name="minCust"
-        placeholder="ex. 12">;
+        <input type="text" name="minCust" placeholder="ex. 12" />;
 
         <label for="maxCust">Max Hourly Customers</label>
-        <input type="text" name="maxCust" placeholder="150">
+        <input type="text" name="maxCust" placeholder="150" />
 
         <label for="avgCookieSale">Average Cookie Sales</label>
-        <input type="text" name="avgCookieSale" placeholder="7.6">
-<!-- what am I trying to render -->
-
+        <input type="text" name="avgCookieSale" placeholder="7.6" />
+        <!-- what am I trying to render -->
       </fieldset>
     </form>
     <!-- min cust -->
@@ -40,19 +47,8 @@
     <!-- hours -->
     <!-- add input and submit button -->
     <h1 id="pageTitle">suupp</h1>
- 
 
-
-   
-
-
-
-
-
-    <table id="storeTable">
-      
-
-    </table>
+    <table id="storeTable"></table>
   </body>
   <script src="app.js"></script>
 </html>

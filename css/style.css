@@ -57,7 +57,7 @@ th {
 }
 
 /* Index.html */
-p {
+ul p {
   border: 3px solid #003366;;
   font-size: 18px;
   font-family: 'Anton', sans-serif;
