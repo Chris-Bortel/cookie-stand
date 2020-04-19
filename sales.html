@@ -4,38 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <title>Store Front</title>
   </head>
   <body>
-    <h1>Pat's Salmon Cookies</h1>
-    <a href="index.html">Home</a>
 
-    <form id="cookieStoreForm">
+<!-- 1. find the values in the form using event listener js -->
+<!-- figure out hour to put data into constructor function -->
+
+     <!-- My form! -->
+     <form id ="userForm">
       <fieldset>
-        <legend>Cookie Store Creator</legend>
-        <ul>
+        <legend>Cookie Store Creator </legend>
+
         <label for="city">City Location</label>
-        <input type="text" name="city" />
-      
+        <input type="text" name="city" placeholder="ex. Yakima"> 
+        
+        <!-- <button type="submit">Submit</button> -->
+        <input type="submit">
+
         <label for="minCust">Min Hourly Customers</label>
-        <input type="text" name="minCust" />
+        <input type="text" name="minCust"
+        placeholder="ex. 12">;
 
         <label for="maxCust">Max Hourly Customers</label>
-        <input type="text" name="maxCust" />
+        <input type="text" name="maxCust" placeholder="150">
 
-        <label for="avgCookieSale">Average Cookie Sale</label>
-        <input type="text" name="avgCookieSale" />
-        
-        </ul>
-        <input type="submit" />
+        <label for="storeHoursOpen">Store Hours</label>
+        <input type="text" name="storeHoursOpen" placeholder="6am - 7pm">
+<!-- what am I trying to render -->
+
       </fieldset>
     </form>
-    <ul id="theForm"></ul>
+    <!-- min cust -->
+    <!-- max cust -->
+    <!-- hours -->
+    <!-- add input and submit button -->
+    <h1 id="pageTitle">suupp</h1>
+ 
 
-    <h1 id="pageTitle"></h1>
 
-    <table id="storeTable"></table>
+   
+
+
+
+
+
+    <table id="storeTable">
+      
+
+    </table>
   </body>
   <script src="app.js"></script>
 </html>
