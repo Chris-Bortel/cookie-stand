@@ -9,6 +9,7 @@ body {
   height: 100%;
   margin: 0 auto;
   background-color: lightsteelblue;
+  background-image: url(../assets/fishOpcacity.png);
   /* background-color:rgba(186, 81, 36, 0.591) ; */
 }
 
@@ -18,7 +19,9 @@ header nav {
   margin: 0 auto;
   margin-top: 20px;
   border-radius: 5px;
-  background-color: rgba(186, 81, 36, 0.591);
+  background-color: rgba(209, 65, 4, 0.745);
+  box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
+  border: 1px solid #853d03bf;
   /* text-align: center; */
 }
 
@@ -42,17 +45,20 @@ ul li:nth-child(5) {
 }
 
 body div {
+  /* border: 4.5px solid black; */
   width: 860px;
   height: 880px;
   margin: 0 auto;
   margin-top: 10px;
   padding-top: 20px;
+  background-color: rgba(131, 171, 223, 0.461);
+  box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
   border-radius: 5px;
-  background-color: rgba(118, 106, 56, 0.536);
+  border: 1px solid rgba(120, 120, 120, 0.975);
+  /* background-color: rgb(148, 169, 196); */
 }
 
 main {
-  border: 4.5px solid black;
   border-radius: 10px;
   width: 710px;
   height: 725px;
@@ -62,7 +68,9 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   background-color: #d6977d;
-
+  box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
+  /* border: 4.5px solid black; */
+  border: 1px solid #853d03bf;
   /* background-repeat: no-repeat; */
 }
 
@@ -108,12 +116,28 @@ body footer {
   margin: 0 auto;
   margin-top: 10px;
   border-radius: 5px;
-  background-color: rgba(186, 81, 36, 0.591)
+  background-color: rgba(209, 65, 4, 0.745);
+  box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
+  border: 1px solid #853d03bf;
+
 }
+
+
+
+
 /* Table styling
 css-tricks cool tables */
+table td, th {
+  /* border: 1px solid #853d03bf; */
+  padding: 3px;
+  border-radius: 5px;
+  box-shadow: 3px 4px 5px 0px rgba(133,61,3,1);
+}
 
-/* h1 {
+table th {
+  font-weight: bold;
+}
+table h1 {
   font-size:50px;
   font-family: 'Pacifico', cursive;
   color: #003366;
@@ -127,23 +151,32 @@ a {
 }
 table {
   border: 8px solid #003366;
+  border-radius: 5px;
   border-collapse: collapse;
-  background-color: #bada55;
+  background-color: #bbda5593;
+  
+  /* box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76); */
+
   }
 
-td {
+table td {
   font-family: Arial, Helvetica, sans-serif;
-  color: #4B2858
+  color: #4B2858;
+  border-radius: 5px;
 }
-th {
+table th {
+  padding-left: 10px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 text-align: left;
 color:#0F1C36;
+border-radius: 5px;
 }
+
+
 
 form {
   border: 8px solid #003366;
-  background-color: #bada55;
+  background-color: #bbda5593;
   color: purple;
   font-family: 'Anton', sans-serif;
   width: 750px;
@@ -164,7 +197,7 @@ td {
 th {
   border: 1px solid black;
 }
- */
+
 
  
 
