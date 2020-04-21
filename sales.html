@@ -3,56 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/reset.css">
     <title>Store Front</title>
   </head>
+
   <body>
+    <header>
+      <nav>
+        <ul>
+          <h1>Pat's Salmon Cookies</h1>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sales.html">Sales</a></li>
+          <li><a href="store.html">Fishy Swag</a></li>
+          <li><a href="order-processing.html">Orders</a></li>
+        </ul>
+      </nav>
+    </header>
 
-<!-- 1. find the values in the form using event listener js -->
-<!-- figure out hour to put data into constructor function -->
+    <div>
+      <main>
+        <!-- <img src="../cookie-stand/assets/salmonOpacity.png" alt=""> -->
+        <section>
+          <form id="userForm">
+            <fieldset>
+              <legend>Cookie Store Creator</legend>
 
-     <!-- My form! -->
-     <form id ="userForm">
-      <fieldset>
-        <legend>Cookie Store Creator </legend>
+              <label for="city">City Location</label>
+              <input type="text" name="city" placeholder="ex. Yakima" />
 
-        <label for="city">City Location</label>
-        <input type="text" name="city" placeholder="ex. Yakima"> 
-        
-        <!-- <button type="submit">Submit</button> -->
-        <input type="submit">
+              <!-- <button type="submit">Submit</button> -->
+              <input type="submit" />
 
-        <label for="minCust">Min Hourly Customers</label>
-        <input type="text" name="minCust"
-        placeholder="ex. 12">;
+              <label for="minCust">Min Hourly Customers</label>
+              <input type="text" name="minCust" placeholder="ex. 12" />;
 
-        <label for="maxCust">Max Hourly Customers</label>
-        <input type="text" name="maxCust" placeholder="150">
+              <label for="maxCust">Max Hourly Customers</label>
+              <input type="text" name="maxCust" placeholder="150" />
 
-        <label for="avgCookieSale">Average Cookie Sales</label>
-        <input type="text" name="avgCookieSale" placeholder="7.6">
-<!-- what am I trying to render -->
+              <label for="avgCookieSale">Average Cookie Sales</label>
+              <input type="text" name="avgCookieSale" placeholder="7.6" />
+              <!-- what am I trying to render -->
+            </fieldset>
+            <ul>
+              <img src="assets/frosted-cookie-opacity.png" alt="">
+            </ul>
+          </form>
+        </section>
 
-      </fieldset>
-    </form>
-    <!-- min cust -->
-    <!-- max cust -->
-    <!-- hours -->
-    <!-- add input and submit button -->
-    <h1 id="pageTitle">suupp</h1>
- 
-
-
-   
-
-
-
-
-
-    <table id="storeTable">
-      
-
-    </table>
+          <!-- min cust -->
+          <!-- max cust -->
+          <!-- hours -->
+          <!-- add input and submit button -->
+          <h1 id="pageTitle">suupp</h1>
+<article id="saleTable">
+  <table id="storeTable"></table>
+</article>
+      </main>
+    </div>
+    <footer></footer>
   </body>
   <script src="app.js"></script>
 </html>
