@@ -19,7 +19,7 @@ header nav {
   margin: 0 auto;
   margin-top: 20px;
   border-radius: 5px;
-  background-color: rgba(209, 65, 4, 0.745);
+  background-color: rgba(209, 66, 4, 0.851);
   box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
   border: 1px solid #853d03bf;
   /* text-align: center; */
@@ -51,7 +51,7 @@ body div {
   margin: 0 auto;
   margin-top: 10px;
   padding-top: 20px;
-  background-color: rgba(131, 171, 223, 0.461);
+  background-color: rgba(131, 171, 223, 0.892);
   box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
   border-radius: 5px;
   border: 1px solid rgba(120, 120, 120, 0.975);
@@ -149,12 +149,13 @@ a {
   font-family: 'Open Sans Condensed', sans-serif;
   color:#003366;
 }
+
+
 table {
   border: 8px solid #003366;
   border-radius: 5px;
   border-collapse: collapse;
-  background-color: #bbda5593;
-  
+  /* background-color: #bbda5593; */
   /* box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76); */
 
   }
@@ -163,6 +164,8 @@ table td {
   font-family: Arial, Helvetica, sans-serif;
   color: #4B2858;
   border-radius: 5px;
+  text-align: center;
+  padding-top:15px
 }
 table th {
   padding-left: 10px;
@@ -170,16 +173,25 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 text-align: left;
 color:#0F1C36;
 border-radius: 5px;
+} 
+
+#saleTable{
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 
-
+section form {
+  margin: 0 auto;
+  margin-top:50px
+}
 form {
   border: 8px solid #003366;
   background-color: #bbda5593;
   color: purple;
   font-family: 'Anton', sans-serif;
-  width: 750px;
+  width: 650px;
+  height:100px
 }
 
 fieldset {
@@ -188,6 +200,12 @@ fieldset {
 
 input {
   border: 4px solid #003366;
+  background-color: lightblue;
+  background-color: #d6977d;
+
+}
+
+input:focus {
   background-color: lightblue;
 }
 
@@ -204,8 +222,10 @@ th {
 
 
  /* ********* Store ************* */
-/* 
- #store {
+#store
 
- } */
+#imgContainer {
+  overflow:scroll:
+
+ }
 
