@@ -10,7 +10,6 @@ body {
   margin: 0 auto;
   background-color: lightsteelblue;
   background-image: url(../assets/fishOpcacity.png);
-  /* background-color:rgba(186, 81, 36, 0.591) ; */
 }
 
 header nav {
@@ -22,9 +21,6 @@ header nav {
   background-color: rgba(209, 66, 4, 0.851);
   box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
   border: 1px solid #853d03bf;
-  /* text-align: center; */
-  /* font-family: 'Bangers', cursive; */
-
 }
 
 nav h1 {
@@ -40,10 +36,9 @@ ul li {
   margin-top: 13px;
   margin-right: 50px;
   font-size: 25px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-family: 'Bangers', cursive;
+  font-family: "Noto Sans TC", sans-serif;
+  font-family: "Bangers", cursive;
   text-decoration: none;
-
 }
 
 ul li:nth-child(4) {
@@ -74,15 +69,18 @@ main {
   background-color: #d6977d;
   box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
   border: 1px solid #853d03bf;
+  color: #455871;
+  font-size: 15px;
 }
 
 main section {
   width: 680px;
   margin: 0 auto;
-  margin-top:20px;
+  margin-top: 20px;
   padding-left: 15px;
   margin-right: 40px;
   line-height: 1.4;
+  color: #455871;
 }
 
 main article {
@@ -97,7 +95,8 @@ article p {
   padding-left: 15px;
   padding-right: 13px;
   font-size: 15px;
-  line-height: 1.2
+  line-height: 1.2;
+  color: #455871;
 }
 
 body footer {
@@ -105,34 +104,35 @@ body footer {
   height: 60px;
   margin: 0 auto;
   margin-top: 10px;
+  margin-bottom:40px;
   border-radius: 5px;
   background-color: rgba(209, 65, 4, 0.745);
-  box-shadow: 4px 6px 9px 0px rgba(69, 88, 113, 0.76);
+  box-shadow: 4px 6px 9px 0px #455871c2;
   border: 1px solid #853d03bf;
 }
-
 /* Table styling
 css-tricks cool tables */
-table td, th {
+table td,
+th {
   padding: 3px;
   border-radius: 5px;
-  box-shadow: 3px 4px 5px 0px rgba(133,61,3,1);
+  box-shadow: 3px 4px 5px 0px rgba(133, 61, 3, 1);
 }
 
 table th {
   font-weight: bold;
 }
 table h1 {
-  font-size:50px;
-  font-family: 'Bangers', cursive;
+  font-size: 50px;
+  font-family: "Bangers", cursive;
   color: #003366;
 }
 
 a {
   font-size: 30px;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-family: 'Bangers', cursive;
-  color:#003366;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "Bangers", cursive;
+  color: #003366;
 }
 
 table {
@@ -140,53 +140,55 @@ table {
   border-radius: 5px;
   border-collapse: collapse;
   background-color: #bbda552f;
-  }
+}
 
 table td {
   font-family: Arial, Helvetica, sans-serif;
-  color: #4B2858;
+  color: #4b2858;
   border-radius: 5px;
   text-align: center;
-  padding-top:15px;
+  padding-top: 15px;
 }
 table th {
   padding-left: 10px;
-font-family: Georgia, 'Times New Roman', Times, serif;
-text-align: left;
-color:#0F1C36;
-border-radius: 5px;
-} 
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: left;
+  color: #0f1c36;
+  border-radius: 5px;
+}
 
-#saleTable{
+#saleTable {
   margin-right: 14px;
   margin-left: 14px;
- 
   background-color: rgba(145, 181, 227, 0.831);
 }
 
 section form {
   margin: 0 auto;
-  /* margin-top:30px; */
 }
+
 form {
   border: 8px solid #003366;
   border-radius: 5px;
-  background-color:rgba(163, 183, 190, 0.906);
-  box-shadow: 3px 4px 5px 0px rgba(133,61,3,1);
+  background-color: rgba(163, 183, 190, 0.906);
+  box-shadow: 3px 4px 5px 0px rgba(133, 61, 3, 1);
   color: purple;
-  font-family: 'Anton', sans-serif;
+  font-family: "Anton", sans-serif;
   width: 685px;
-  height:150px;
+  height: 150px;
 }
 
 fieldset {
   border: solid 2px #003366;
+  margin-left: 20px
 }
 
 input {
-  border: 4px solid #003366;
+  box-shadow: 0px 2px 5px 1px rgba(133, 61, 3, 1);
+  border: 1px solid #853d03bf;
   background-color: lightblue;
   background-color: #d6977d;
+  margin:5px
 }
 
 input:focus {
@@ -201,13 +203,5 @@ th {
   border: 1px solid black;
 }
 
-
- 
-
-
-
- /* ********* Store ************* */
+/* ********* Store ************* */
 /* #store */
-
-
-
